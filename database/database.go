@@ -11,19 +11,19 @@ import (
 var db *gorm.DB
 
 func StartDB() {
-	str := "host=localhost port=5432 user=postgres dbname=lafontana sslmode=disable password=root"
-	database, err := gorm.Open(postgres.Open(str), &gorm.Config{})
+	str := "host=localhost port=5432 user=postgres dbname=lafontana sslmode=disable password=root" //Configura 
+	database, err := gorm.Open(postgres.Open(str), &gorm.Config{}) // Abre a conexao
 	if err != nil{
 		log.Fatal("error:", err)
 	}
 
-	db = database
+	db = database //Recebe o banco de dados
 
-	config, _ := db.DB()
+	config, _ := db.DB() 
 
 	config.SetConnMaxIdleTime(10)
 	config.SetMaxOpenConns(100)
-	migrations.RunMigrations(db)
+	migrations.RunMigrations(db) //Rodar migrations
 }
 
 
